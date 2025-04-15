@@ -82,6 +82,6 @@ public class GameItem implements GameEntity {
      */
     @Override
     public void setVisible(boolean visible) {
-        blocksMovement = visible; 
+        blocksMovement = visible;
     }
 }
