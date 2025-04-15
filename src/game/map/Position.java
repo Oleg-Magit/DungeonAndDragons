@@ -1,5 +1,7 @@
 package game.map;
 
+import java.util.Objects;
+
 public class Position {
     private int row;
     private int col;
@@ -23,9 +25,11 @@ public class Position {
 
 
     }
+    @Override
+    public int hashCode(){return Objects.hash(row,col);}
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "("+ row +","+col+")";
+    }
 }
