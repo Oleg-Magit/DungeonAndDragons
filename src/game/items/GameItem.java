@@ -53,6 +53,28 @@ public class GameItem implements GameEntity {
     }
 
     /**
+     * Determines whether this GameItem is equal to another object.
+     *
+     * Two GameItem instances are considered equal if they have the same description,
+     * regardless of their position or whether they block movement.
+     *
+     * This implementation is useful when comparing items by type or label
+     * (e.g., all items with the description "Potion" are considered the same kind of item).
+     *
+     * Note: This method must be used consistently with {@link #hashCode()}, which also relies only on the description field.
+     *
+     * @param o the object to compare to this item.
+     * @return true if the given object is a GameItem with the same description; false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameItem other = (GameItem) o;
+        return description.equals(other.description);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
