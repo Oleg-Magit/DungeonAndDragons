@@ -25,6 +25,14 @@ public class Inventory {
         items = new ArrayList<GameItem>();
     }
 
+
+    /**
+     * Returns a string representation of the inventory and its items.
+     * Useful for debugging, logging, or displaying inventory contents to the user.
+     * @return a comma-separated list of item descriptions.
+     */
+    @Override
+
     public String toString (){
         StringBuilder sb = new StringBuilder();
         sb.append("Inventory: ");
