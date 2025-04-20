@@ -1,29 +1,27 @@
 package game.combat;
 
 /**
- * ממשק שמייצג ישות שיכולה לבצע התקפה פיזית.
- * ישויות כאלה משתמשות בכוח פיזי (ללא קסם) כדי לתקוף יריבים.
- * מתאים לדמויות כמו Warrior, Archer, Goblin, Orc, Dragon וכו'.
- *
- * הממשק כולל פעולת תקיפה רגילה ובדיקה האם התקיפה היא קריטית.
- *
- * @author (שמך)
+ * An interface representing an entity capable of performing physical attacks.
+ * Such entities use physical strength (non-magical) to inflict damage on opponents.
+ * Suitable for characters like Warrior, Archer, Goblin, Orc, Dragon, etc.
+ * The interface includes a basic attack method and a check for critical hits.
  */
 public interface PhysicalAttacker {
 
     /**
-     * מבצעת התקפה פיזית על יריב נתון.
-     * כמות הנזק עשויה להשתנות לפי כוח, סוג הדמות, ו/או קריטיות.
+     * Performs a physical attack on a given target.
+     * The amount of damage may vary based on strength, character type,
+     * or whether the hit is critical.
      *
-     * @param target הישות שמותקפת.
+     * @param target the Combatant being attacked.
      */
     void attack(Combatant target);
 
     /**
-     * בודקת האם ההתקפה הנוכחית היא קריטית (Critical Hit).
-     * תקיפה קריטית בדרך כלל תגרום נזק כפול או משופר.
+     * Determines whether the current attack is a critical hit.
+     * A critical hit usually deals increased or double damage.
      *
-     * @return true אם התקיפה קריטית, אחרת false.
+     * @return true if the attack is critical; false otherwise.
      */
     boolean isCritical();
 }

@@ -1,42 +1,40 @@
-
 package game.core;
 
 import game.map.Position;
 
 /**
- * ממשק המייצג כל ישות שמופיעה על המפה במשחק.
- * ישות יכולה להיות דמות, אויב, פריט, קיר וכו'.
- * כל ישות חייבת לדעת את מיקומה, האם היא נראית, ואיך לייצג את עצמה ויזואלית.
- *
+ * An interface representing any entity that appears on the game map.
+ * Entities can be characters, enemies, items, walls, and more.
+ * Every entity must be aware of its position, visibility state, and how to visually represent itself on the map.
  */
 public interface GameEntity {
 
     /**
-     * מחזיר את המיקום הנוכחי של הישות על המפה.
+     * Returns the current position of the entity on the map.
      *
-     * @return האובייקט Position שמייצג את מיקום הישות.
+     * @return a Position object representing the entity's location.
      */
     Position getPosition();
 
     /**
-     * מעדכן את מיקום הישות על המפה.
+     * Updates the position of the entity on the map.
      *
-     * @param newPos מיקום חדש (Position) אליו תועבר הישות.
+     * @param newPos the new Position to move the entity to.
      */
     void setPosition(Position newPos);
 
     /**
-     * מחזיר תו טקסטואלי שמייצג את הישות במפה.
-     * לדוגמה: '@' לשחקן, '#' לקיר, '$' לאוצר.
+     * Returns a textual symbol used to represent the entity on the map.
+     * For example: '@' for a player, '#' for a wall, '$' for treasure.
      *
-     * @return מחרוזת אחת או יותר המשמשת לסמל הישות.
+     * @return a string representing the visual symbol of the entity.
      */
     String getDisplaySymbol();
 
     /**
-     * מגדיר האם הישות נראית לשחקן (לפי טווח ראייה).
+     * Sets the visibility of the entity to the player (e.g. based on field of view).
      *
-     * @param visible true אם הישות נראית, false אם מוסתרת.
+     * @param visible true if the entity should be visible; false if it should be hidden.
      */
     void setVisible(boolean visible);
 }

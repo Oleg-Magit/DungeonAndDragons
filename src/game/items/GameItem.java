@@ -4,37 +4,36 @@ import game.core.GameEntity;
 import game.map.Position;
 
 /**
- * מחלקה שמייצגת פריט בסיסי במשחק – עצם שנמצא על המפה.
- * פריט עשוי להיות שיקוי, קיר, אוצר או כל ישות שאינה דמות.
- * מממש את הממשק {@link GameEntity} ומכיל מידע על מיקום, חסימת תנועה ותיאור טקסטואלי.
- * מחלקה זו מהווה בסיס לפריטים מתקדמים יותר.
- *
-
+ * Represents a basic item in the game—an object that exists on the map.
+ * An item may be a potion, wall, treasure, or any non-character entity.
+ * Implements the {@link GameEntity} interface and stores position, blocking behavior,
+ * and a textual description used also as a visual symbol.
+ * This class serves as a base for more advanced item types.
  */
 public class GameItem implements GameEntity {
 
     /**
-     * מיקום הפריט על הלוח.
+     * The item's current position on the map.
      */
     private Position position;
 
     /**
-     * האם הפריט חוסם תנועה (true = אי אפשר לעבור דרכו).
+     * Indicates whether the item blocks movement (true = cannot pass through).
      */
     private boolean blocksMovement;
 
     /**
-     * תיאור טקסטואלי של הפריט (גם משמש כסמל ויזואלי במפה).
-     * לא ניתן לשינוי לאחר יצירת האובייקט.
+     * Textual description of the item (also used as its visual symbol on the map).
+     * This value is final and cannot be changed after construction.
      */
     private final String description;
 
     /**
-     * בונה פריט חדש עם מיקום, תיאור, והגדרה האם הוא חוסם תנועה.
+     * Constructs a new item with a specified position, description, and movement blocking status.
      *
-     * @param position       מיקום התחלה של הפריט.
-     * @param blocksMovement האם חוסם תנועה.
-     * @param description    תיאור טקסטואלי של הפריט.
+     * @param position       the initial position of the item.
+     * @param blocksMovement whether the item blocks movement.
+     * @param description    a string representing the item's description and symbol.
      */
     public GameItem(Position position, boolean blocksMovement, String description) {
         this.position = position;
@@ -43,30 +42,38 @@ public class GameItem implements GameEntity {
     }
 
     /**
-     * מחזיר את התיאור של הפריט – משמש גם להצגה וגם ללוגים.
+     * Returns the item's textual description.
+     * Also used for display purposes and logging.
      *
-     * @return מחרוזת המתארת את הפריט.
+     * @return a string describing the item.
      */
     @Override
     public String toString() {
         return description;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Position getPosition() {
         return position;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setPosition(Position newPos) {
         position = newPos;
     }
 
     /**
+     * {@inheritDoc}
+     * In this implementation, the item's description is used as its display symbol
+     * (e.g., '@' or '$').
      *
-     * כאן, התיאור משמש גם כסמל לתצוגה (לדוגמה: "@" או "$").
+     * @return the symbol that visually represents the item.
      */
     @Override
     public String getDisplaySymbol() {
@@ -74,11 +81,13 @@ public class GameItem implements GameEntity {
     }
 
     /**
+     * {@inheritDoc}
+     * In this implementation, the visibility status updates the blocksMovement field,
+     * for demonstration purposes only.
      *
-     * במימוש הזה, השדה blocksMovement מתעדכן לפי הנראות (לצורך הדגמה בלבד).
-     * מומלץ להפריד בין 'חוסם תנועה' ל-'גלוי' במימושים מתקדמים יותר.
+     * In future versions, it's recommended to separate visibility from movement blocking.
      *
-     * @param visible האם הפריט גלוי (true) או מוסתר (false).
+     * @param visible true if the item should be visible; false otherwise.
      */
     @Override
     public void setVisible(boolean visible) {

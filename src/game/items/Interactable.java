@@ -1,23 +1,23 @@
 package game.items;
 
 /**
- * ממשק שמייצג עצם אינטראקטיבי במפה – כלומר, פריט או ישות שאפשר לבצע עליה פעולה (למשל איסוף, שימוש, הפעלה).
- *
- * פריטים שמממשים את הממשק הזה מגיבים כשהשחקן מתקרב אליהם או משתמש בהם.
- * דוגמות: שיקוי מרפא, אוצר, מכשול מיוחד וכו'.
- *
- * הממשק מאפשר טיפול אחיד בפריטים פעילים – בלי תלות בסוגם הספציפי.
- *
- * @author (שמך)
+ * An interface representing an interactive object on the game map—
+ * meaning an item or entity that a player can interact with (e.g., collect, activate, use).
+ * Items implementing this interface respond when the player gets close to them
+ * or explicitly uses them.
+ * Examples include: healing potions, treasure, traps, or special obstacles
+ * This interface allows handling of interactive objects in a consistent way,
+ * regardless of their specific type.
  */
 public interface Interactable {
 
     /**
-     * מבצע פעולה כאשר שחקן פוגש או מפעיל את הפריט.
-     * כל פריט יכול לממש את הפעולה בצורה שונה:
-     * לדוגמה: שיקוי ירפא, אוצר ייתן נקודות, מלכודת תגרום נזק וכו'.
+     * Triggers an interaction when a player encounters or activates the item.
+     * Each item may implement this behavior differently:
+     * for example, a potion may heal the player, a treasure may give points,
+     * and a trap may deal damage.
      *
-     * @param c האובייקט Character (שחקן) שמפעיל את האינטראקציה.
+     * @param c the Character object that is performing the interaction.
      */
     void interact(Character c);
 }

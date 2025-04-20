@@ -1,70 +1,70 @@
 package game.combat;
 
 /**
- * ממשק שמייצג ישות לוחמת (שחקן או אויב) שיכולה להשתתף בקרב.
- * כל Combatant מחזיק חיים, כוח התקפה, יכולת להתחמק, ויכולת לקבל או להחלים נזק.
- * משמש בסיס למערכת הקרבות בין דמויות.
- *
- * ממומש על ידי ישויות כמו AbstractCharacter ודומיהן.
+ * An interface representing a combat-capable entity (e.g., player or enemy)
+ * that can participate in battles.
+ * A Combatant holds health, attack power, evasion capability, and can receive or heal damage.
+ * This interface forms the basis of the game's combat system and is implemented
+ * by entities such as AbstractCharacter and its subclasses.
  *
  */
 public interface Combatant {
 
     /**
-     * מחזיר את רמת החיים הנוכחית של הישות.
-     * טווח מקובל: 0 עד 100.
+     * Returns the current health of the entity.
+     * Valid range is typically from 0 to 100.
      *
-     * @return ערך החיים הנוכחי (int).
+     * @return the current health value.
      */
     int getHealth();
 
     /**
-     * מגדיר את ערך החיים הנוכחי של הישות.
-     * ייתכן שתהיה בדיקת תקינות במימוש (למשל לא לאפשר מעל 100).
+     * Sets the entity's current health value.
+     * Implementations may include validation logic (e.g., limiting max health to 100).
      *
-     * @param health ערך חיים חדש.
+     * @param health the new health value.
      */
     void setHealth(int health);
 
     /**
-     * מקבלת נזק מקרב – מעדכנת את החיים בהתאם.
-     * מקור הנזק נשלח כ־Combatant לצורך לוגיקה של השפעות, הגנות, יכולות מיוחדות וכו'.
+     * Applies damage to the entity during combat.
+     * The source of the damage is passed as a Combatant to allow effects like
+     * resistances or counters based on attacker type.
      *
-     * @param amount כמות הנזק.
-     * @param source הישות שגרמה לנזק.
+     * @param amount the amount of damage to apply.
+     * @param source the entity that caused the damage.
      */
     void receiveDamage(int amount, Combatant source);
 
     /**
-     * מחזירה חיים לישות.
-     * בדרך כלל כתוצאה משתיית שיקוי או יכולת ריפוי.
+     * Heals the entity by a given amount.
+     * Usually used after consuming a potion or casting a healing spell.
      *
-     * @param amount כמות החיים שיש להחזיר.
+     * @param amount the amount of health to restore.
      */
     void heal(int amount);
 
     /**
-     * בודקת אם הישות מתה – חיים אפס או פחות.
+     * Checks whether the entity is dead (health is zero or less).
      *
-     * @return true אם מתה, false אם עדיין חיה.
+     * @return true if the entity is dead; false otherwise.
      */
     boolean isDead();
 
     /**
-     * מחזירה את כוח ההתקפה הבסיסי של הישות.
-     * ערך זה משפיע על כמות הנזק שתגרום ביריב.
+     * Returns the base attack power of the entity.
+     * This value is used when calculating outgoing damage.
      *
-     * @return ערך כוח (int).
+     * @return the attack power value.
      */
     int getPower();
 
     /**
-     * ניסיון התחמקות מהתקפה.
-     * המתודה תחזיר true אם ההתחמקות הצליחה, false אחרת.
-     * אחוזי הצלחה משתנים לפי דמות.
+     * Attempts to evade an incoming attack.
+     * This method returns true if the evasion attempt succeeds.
+     * Evasion probability may vary depending on the character's stats.
      *
-     * @return true אם הצליחה להתחמק, false אם לא.
+     * @return true if evasion is successful; false otherwise.
      */
     boolean tryEvade();
 }
-
